@@ -8,7 +8,7 @@ import 'package:http/io_client.dart';
 class Networking {
   ApiResult result =  ApiResult();
 
-  Future getData(String url, String token) async {
+  Future getData(String url,) async {
     HttpClient client =  HttpClient();
     client.badCertificateCallback =
         ((X509Certificate cert, String host, int port) => true);
@@ -16,35 +16,37 @@ class Networking {
     IOClient ioClient = IOClient(client);
 
     try {
-      http.Response response = await ioClient.get(Uri.parse(url),
-          headers: {HttpHeaders.authorizationHeader: 'Bearer $token'});
+      http.Response response = await ioClient.get(Uri.parse(url) );
 
       if (response.statusCode >= 200 && response.statusCode <= 300) {
+        
         result.data = conv.jsonDecode(response.body);
         result.hasError = false;
       } else {
         Map error = conv.jsonDecode(response.body);
         String errorMessage = error["error"];
 
+        String statusCode = response.statusCode.toString();
+        print("Status code is $statusCode");
+
         result.hasError = true;
         result.failure =  Failure(ErrorCodes.NO_RESPONSE_CODE, errorMessage);
       }
     } on FormatException {
       result.hasError = true;
-      result.failure = Failure(ErrorCodes.NO_BODY_PARSING_CODE,
+      result.failure =  Failure(ErrorCodes.NO_BODY_PARSING_CODE,
           "Error: Problem parsing data from the server");
     } on SocketException {
       result.hasError = true;
-      result.failure = Failure(ErrorCodes.NO_CONNECTION_CODE,
+      result.failure =  Failure(ErrorCodes.NO_CONNECTION_CODE,
           "Error: Cannot connect to the internet");
     } catch (ex) {
       result.hasError = true;
       result.failure =
-          Failure(ErrorCodes.NO_CONNECTION_CODE, ex.toString());
+           Failure(ErrorCodes.NO_CONNECTION_CODE, ex.toString());
     }
     return result;
   }
-
   Future postData(var body, String url, [String? token]) async {
     HttpClient client = HttpClient();
     client.badCertificateCallback =
