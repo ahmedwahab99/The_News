@@ -48,7 +48,7 @@ class _ArticlePageState extends State<ArticlePage> {
                     );
               },
               child: Container(
-                child: Text("Open In Web", style: TextStyle(color: Colors.white),),
+                child: Text("Open In Web", style: TextStyle(color: Colors.grey),),
                 width: MediaQuery.of(context).size.width,
                 height: 50,
                 )
