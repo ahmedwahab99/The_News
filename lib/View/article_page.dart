@@ -37,7 +37,28 @@ class _ArticlePageState extends State<ArticlePage> {
       ),
       body: Column(
         children: [
-          GestureDetector(
+          ClipRRect(
+              borderRadius: BorderRadius.circular(6),
+              child: Image.network(
+                widget.article.imageURL,
+              )),
+          Text(widget.article.title,
+              style: const TextStyle(
+                  color: Colors.white70,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w500)),
+          const SizedBox(height: 4),
+          Text(widget.article.content,
+              style: const TextStyle(color: Colors.white30)),
+        ],
+      ),
+    );
+  }
+}
+
+
+/*
+GestureDetector(
               onTap: () {
                 Navigator.push(
                     context,
@@ -53,13 +74,4 @@ class _ArticlePageState extends State<ArticlePage> {
                 height: 50,
                 )
               ),
-          ClipRRect(
-              borderRadius: BorderRadius.circular(6),
-              child: Image.network(
-                widget.article.imageURL,
-              )),
-        ],
-      ),
-    );
-  }
-}
+*/ 
