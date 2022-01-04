@@ -12,6 +12,7 @@ class NewsManger {
     result = await Networking().getData(getNewsURL);
 
     if (result.hasError == false) {
+      
       for (var element in result.data['articles']) {
         if (element['urlToImage']!=null){ 
         Article article = Article
@@ -25,6 +26,8 @@ class NewsManger {
           
         );
         news.add(article);
+        
+       
        
         }
       }

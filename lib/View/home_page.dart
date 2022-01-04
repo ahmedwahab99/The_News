@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:the_newes/Model/article.dart';
 import 'package:the_newes/Model/category.dart';
 import 'package:the_newes/Control/categories_manger.dart';
-import 'package:the_newes/View/Widgets/artical_card.dart';
 import 'package:the_newes/View/Widgets/categories_row.dart';
 import 'package:the_newes/Control/news_manger.dart';
+import 'package:the_newes/View/Widgets/newsScrollableList.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -71,22 +71,10 @@ class _HomePageState extends State<HomePage> {
                         horizontal: 12, vertical: 8),
                 child: Column(
                   children: <Widget>[
+
                     CategoriesRow(categories: categories),
-
-                    ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        
-
-                        itemCount: articles.length,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return ArticalCard(
-                              articalImage: articles[index].imageURL,
-                              articalText: articles[index].text,
-                              articalTitle: articles[index].title
-                            );
-                          }
-                        )
+                    NewsScrollableList(articles: articles)
+                  
                   ],
                 ),
               ),
