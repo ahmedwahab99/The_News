@@ -1,4 +1,3 @@
-import 'package:http/http.dart';
 import 'package:the_newes/Model/article.dart';
 import 'package:the_newes/constants.dart';
 import 'package:the_newes/Model/Networking.dart';

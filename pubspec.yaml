@@ -15,6 +15,7 @@ dependencies:
   http: ^0.13.3
   cupertino_icons: ^1.0.2
   cached_network_image: ^3.2.0
+  webview_flutter: ^3.0.0
 
 dev_dependencies:
   flutter_test:
