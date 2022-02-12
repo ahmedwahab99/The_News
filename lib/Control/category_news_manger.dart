@@ -2,7 +2,7 @@ import 'package:the_newes/Model/article.dart';
 import 'package:the_newes/constants.dart';
 import 'package:the_newes/Model/Networking.dart';
 
-class NewsManger {
+class CategoryNewsManger {
   List<Article> news = [];
   Networking net = Networking();
 
@@ -18,10 +18,10 @@ class NewsManger {
         (
           imageURL: element['urlToImage'] ?? "null",
           articleURL: element['url']?? "null",
-          source: element['source']['name']?? "Not available..",
-          content: element['content']?? "Not available..",
-          text: element['description']?? "Not available..",
-          title: element['title']?? "Not available.."
+          source: element['source']['name']?? "null",
+          content: element['content']?? "null",
+          text: element['description']?? "null",
+          title: element['title']?? "null"
           
         );
         news.add(article);
